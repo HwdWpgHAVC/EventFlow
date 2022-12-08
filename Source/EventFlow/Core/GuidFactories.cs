@@ -141,6 +141,13 @@ namespace EventFlow.Core
             // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
             // SOFTWARE.
 
+            /// <summary>
+            /// Creates a deterministic <see cref="Guid"/> based on parameters.
+            /// </summary>
+            /// <param name="namespaceId"><see cref="Guid"/> used in <see cref="HashCode"/> generation</param>
+            /// <param name="name">name identifier</param>
+            /// <returns><see cref="Guid"/> as a deterministic identifier based on the supplied parameters.</returns>
+            /// <exception cref="ArgumentNullException"></exception>
             public static Guid Create(Guid namespaceId, string name)
             {
                 if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));

@@ -23,6 +23,9 @@
 
 namespace EventFlow.Core
 {
+    /// <summary>
+    /// Interface used for identity. 
+    /// </summary>
     public interface IIdentity
     {
         string Value { get; }

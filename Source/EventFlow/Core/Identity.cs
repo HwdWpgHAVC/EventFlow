@@ -30,6 +30,10 @@ using EventFlow.ValueObjects;
 
 namespace EventFlow.Core
 {
+    /// <summary>
+    /// <see cref="IIdentity"/> implementation with a <see cref="SingleValueObject{T}"/> base object.
+    /// </summary>
+    /// <typeparam name="T"><see cref="Identity{T}"/></typeparam>
     public abstract class Identity<T> : SingleValueObject<string>, IIdentity
         where T : Identity<T>
     {
@@ -59,14 +63,30 @@ namespace EventFlow.Core
             }
         }
 
+        /// <summary>
+        /// Creates a new identifier using <see cref="Guid.NewGuid"/>
+        /// </summary>
         public static T New => With(Guid.NewGuid());
 
+        /// <summary>
+        /// Creates a deterministic <see cref="Guid"/> based on parameters.
+        /// </summary>
+        /// <param name="namespaceId"><see cref="Guid"/> used in <see cref="HashCode"/> generation</param>
+        /// <param name="name">string name identifier</param>
+        /// <returns><see cref="Guid"/> as a deterministic identifier based on the supplied parameters.</returns>
         public static T NewDeterministic(Guid namespaceId, string name)
         {
             var guid = GuidFactories.Deterministic.Create(namespaceId, name);
             return With(guid);
         }
 
+
+        /// <summary>
+        /// Creates a deterministic <see cref="Guid"/> based on parameters.
+        /// </summary>
+        /// <param name="namespaceId"><see cref="Guid"/> used in <see cref="HashCode"/> generation</param>
+        /// <param name="nameBytes">bytes used as identifier</param>
+        /// <returns><see cref="Guid"/> as a deterministic identifier based on the supplied parameters.</returns>
         public static T NewDeterministic(Guid namespaceId, byte[] nameBytes)
         {
             var guid = GuidFactories.Deterministic.Create(namespaceId, nameBytes);
