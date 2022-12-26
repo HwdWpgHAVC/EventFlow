@@ -28,6 +28,9 @@ namespace EventFlow.Core
     /// </summary>
     public interface IIdentity
     {
+        /// <summary>
+        /// A string value of the object's unique identifier.
+        /// </summary>
         string Value { get; }
     }
 }
